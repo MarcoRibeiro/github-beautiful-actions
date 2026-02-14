@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang=\"pt\">
+<head>
+<meta charset=\"utf-8\"/>
+<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/>
+<title>UX Design Directions - GitHub Beautiful Actions</title>
+<style>:root{
+  --bg:#F8FAFC;--panel:#FFFFFF;--ink:#0F172A;--muted:#64748B;--line:#E2E8F0;
+  --primary:#3B82F6;--success:#22C55E;--warn:#F59E0B;--error:#EF4444;
+  --flow-a:#3B82F6;--flow-b:#10B981;--flow-c:#F59E0B;--flow-d:#8B5CF6;--flow-e:#14B8A6;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Helvetica,Arial; background:var(--bg); color:var(--ink)}
+header{padding:24px 32px;border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:2}
+header h1{margin:0;font-size:22px}
+header p{margin:6px 0 0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;padding:24px 32px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(15,23,42,.06)}
+.card h2{margin:0;padding:16px 18px;border-bottom:1px solid var(--line);font-size:16px}
+.mock{padding:16px}
+.toolbar{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.pill{padding:4px 10px;border-radius:999px;background:#EEF2FF;color:#3730A3;font-size:12px}
+.canvas{border:1px dashed var(--line);border-radius:12px;padding:12px;background:#FBFDFF}
+.row{display:flex;align-items:center;gap:10px;margin:8px 0}
+.dot{width:10px;height:10px;border-radius:999px;background:var(--primary)}
+.line{height:4px;border-radius:999px;background:var(--primary);flex:1;position:relative}
+.line.err{background:var(--error)}
+.line.err::after{content:"";position:absolute;right:-2px;top:-5px;width:12px;height:12px;border-radius:999px;border:2px solid var(--error);background:#fff}
+.station{width:12px;height:12px;border-radius:3px;background:#fff;border:2px solid var(--primary)}
+.station.err{border-color:var(--error)}
+.station.wait{border-style:dashed;border-color:#94A3B8}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--muted)}
+.kpi{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.kpi div{background:#F1F5F9;border-radius:10px;padding:8px;font-size:11px}
+.side{display:grid;grid-template-columns:1.2fr .8fr;gap:10px}
+.panel{border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff}
+.list{display:grid;gap:6px}
+.item{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.tag{padding:2px 6px;border-radius:6px;background:#E2E8F0;color:#0F172A;font-size:10px}
+
+/* Direction-specific styles */
+.d2 .canvas{background:linear-gradient(180deg,#F8FAFC,#EEF2FF)}
+.d3 .canvas{background:#0B1220;color:#E2E8F0;border-color:#1E293B}
+.d3 .panel{background:#0F172A;border-color:#1E293B}
+.d3 .line{background:#22C55E}
+.d4 .canvas{background:#F8FAFC}
+.d5 .canvas{background:#FFFFFF}
+.d6 .canvas{background:#F8FAFC}
+
+@media (max-width:900px){.side{grid-template-columns:1fr}}</style>
+</head>
+<body>
+<header>
+  <h1>UX Design Directions</h1>
+  <p>6 direções visuais exploratórias para o produto. Cada card mostra um layout e hierarquia diferentes.</p>
+</header>
+
+<section class=\"grid\">
+  <article class=\"card d1\">
+    <h2>Direção 1: Metro‑Map Clean (principal)</h2>
+    <div class=\"mock\">
+      <div class=\"toolbar\"><span class=\"pill\">PR #124</span><span class=\"pill\">branch: feature/ui</span></div>
+      <div class=\"canvas\">
+        <div class=\"row\"><div class=\"station\"></div><div class=\"line\"></div><div class=\"station\"></div><div class=\"line err\"></div><div class=\"station err\"></div></div>
+        <div class=\"row\"><div class=\"station\"></div><div class=\"line\" style=\"background:var(--flow-b)\"></div><div class=\"station\" style=\"border-color:var(--flow-b)\"></div></div>
+        <div class=\"legend\">
+          <span>■ Flow A</span><span>■ Flow B</span><span>Erro: borda vermelha</span><span>Cache: ícone ⚡</span>
+        </div>
+      </div>
+      <div class=\"kpi\"><div>Tempo: 2m13s</div><div>Falha: tests</div><div>Próximo: deploy</div></div>
+    </div>
+  </article>
+
+  <article class=\"card d2\">
+    <h2>Direção 2: Timeline + Detalhe Lateral</h2>
+    <div class=\"mock side\">
+      <div class=\"canvas\">
+        <div class=\"row\"><div class=\"dot\"></div><div class=\"line\"></div><div class=\"dot\"></div><div class=\"line err\"></div><div class=\"dot\"></div></div>
+        <div class=\"row\"><div class=\"dot\" style=\"background:var(--flow-c)\"></div><div class=\"line\" style=\"background:var(--flow-c)\"></div><div class=\"dot\" style=\"background:var(--flow-c)\"></div></div>
+      </div>
+      <div class=\"panel\">
+        <strong>Detalhe do step</strong>
+        <div class=\"list\">
+          <div class=\"item\"><span>tests</span><span class=\"tag\">failed</span></div>
+          <div class=\"item\"><span>duration</span><span>42s</span></div>
+          <div class=\"item\"><span>log</span><span>view</span></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class=\"card d3\">
+    <h2>Direção 3: Dark Focus (alta concentração)</h2>
+    <div class=\"mock\">
+      <div class=\"canvas\">
+        <div class=\"row\"><div class=\"station\" style=\"border-color:#22C55E\"></div><div class=\"line\"></div><div class=\"station\"></div><div class=\"line\"></div><div class=\"station err\"></div></div>
+        <div class=\"row\"><div class=\"station\" style=\"border-color:#22C55E\"></div><div class=\"line\"></div><div class=\"station\"></div></div>
+      </div>
+    </div>
+  </article>
+
+  <article class=\"card d4\">
+    <h2>Direção 4: Dense Ops (alta densidade)</h2>
+    <div class=\"mock\">
+      <div class=\"canvas\">
+        <div class=\"row\"><div class=\"station\"></div><div class=\"line\"></div><div class=\"station\"></div><div class=\"line\"></div><div class=\"station\"></div><div class=\"line\"></div><div class=\"station err\"></div></div>
+        <div class=\"row\"><div class=\"station\"></div><div class=\"line\" style=\"background:var(--flow-d)\"></div><div class=\"station\" style=\"border-color:var(--flow-d)\"></div><div class=\"line\" style=\"background:var(--flow-d)\"></div><div class=\"station\" style=\"border-color:var(--flow-d)\"></div></div>
+      </div>
+    </div>
+  </article>
+
+  <article class=\"card d5\">
+    <h2>Direção 5: Minimal Cards (multi‑PR)</h2>
+    <div class=\"mock\">
+      <div class=\"list\">
+        <div class=\"panel\"><strong>PR #122</strong><div class=\"row\"><div class=\"line\"></div></div></div>
+        <div class=\"panel\"><strong>PR #123</strong><div class=\"row\"><div class=\"line err\"></div></div></div>
+        <div class=\"panel\"><strong>PR #124</strong><div class=\"row\"><div class=\"line\" style=\"background:var(--flow-b)\"></div></div></div>
+      </div>
+    </div>
+  </article>
+
+  <article class=\"card d6\">
+    <h2>Direção 6: Map + Table (auditável)</h2>
+    <div class=\"mock side\">
+      <div class=\"canvas\">
+        <div class=\"row\"><div class=\"station\"></div><div class=\"line\"></div><div class=\"station\"></div><div class=\"line err\"></div><div class=\"station err\"></div></div>
+      </div>
+      <div class=\"panel\">
+        <div class=\"item\"><span>job</span><span>tests</span></div>
+        <div class=\"item\"><span>step</span><span>lint</span></div>
+        <div class=\"item\"><span>time</span><span>00:42</span></div>
+      </div>
+    </div>
+  </article>
+</section>
+
+</body>
+</html>
