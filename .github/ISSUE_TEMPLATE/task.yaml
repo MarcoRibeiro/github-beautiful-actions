@@ -1,0 +1,27 @@
+name: Task
+description: Development task
+labels: ["task"]
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - frontend
+        - api
+        - infra
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation details
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria

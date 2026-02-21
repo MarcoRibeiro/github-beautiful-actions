@@ -1,0 +1,7 @@
+{
+  "name": "github-beautiful-actions",
+  "packageManager": "yarn@4.2.2",
+  "dependencies": {
+    "@octokit/rest": "^22.0.1"
+  }
+}
